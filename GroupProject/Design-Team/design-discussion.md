@@ -3,30 +3,35 @@
 ## Design 1  
 Pros  
 - Text  
+
 Cons  
 - Text  
 
 ## Design 2  
 Pros  
 - Text  
+
 Cons  
 - Text  
 
 ## Design 3  
 Pros  
 - Text  
+
 Cons  
 - Text  
 
 ## Design 4  
 Pros  
 - Text  
+
 Cons  
 - Text  
 
 ## Team Design  
 Commonalities  
 - Text  
+
 Differences  
 - Text  
 
