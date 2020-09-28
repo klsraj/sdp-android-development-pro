@@ -22,7 +22,7 @@ Pros
 - Data types added behind each attribute
 
 Cons  
-- Don't necessarily need to show the operators that modify the attributes
+- Does not necessarily need to show the operators that modify the attributes, too much detail can clutter the design
 
 ## Design 3  
 ![Design 1](./design3.png)  
@@ -46,11 +46,16 @@ Cons
 - The "Job Score" class needs to grab information from the "Add Job Offers" and/or "Current Job Info" class right? Are we capturing that relationship?
 
 ## Team Design  
+![Team Design](./team_design.png)
 Commonalities  
-- Text  
+- Most of the team's individual designs had a designated "menu" class, showing that the design was created with the GUI in mind
+- All the designs defined a "job" or a "job offer" as its own class instance with the same attributes
+- All the designs defined immediate relationships between the "main" or "menu" class and the "ranking weights" and the ""job classes
 
 Differences  
-- Text  
+- Not all the designs decided to go into detail on the ranking algorithm to be used in implementation within the design
+- Some designs had a high degree of interconnectivity between the different classes while others had a more "top-down" hierarchal design
+- Some designs considered how the implementation of the GUI might go, with operators such as gotoMenu() or returntoMenu() while other designs did not consider it
 
 ## Summary  
-Summary of the lessons learned in the process of discussing the designs, in terms of design, team work, and any other aspect that the team members consider relevant.  
+One of the valuable lessons learned in this exercise was that there is no definitive or "absolute right way" to construct a UML diagram. Software design is as much an art as it is a science, and the design of even a relatively simple app such as this can be affected significantly by user preferences and biases. When examining the different designs as a team, the team was able to quickly come to a consensus on which designs they wanted to further refine. Each team member then did further refinements of the selected original design and the best refinements of each individual made it into the final team design after a brief discussion. Regardless of user preference, something the team was able to come to agreement on is that simplification of the design when it did not compromise the fidelity or function was desirable. A key example of this was consolidating the "Current Job" and "Job Offer" classes that many of the individual designs defined into a singular "Job" class that denoted whether it was the current job or a job offer through a boolean attribute. Another example was combining the intended ranking and job comparison functionality into a single operator, where the intended function is defined by the number of parameters passed into the operator. The team learned that while complex designs are definitely needed for complex software projects, simplifying a UML diagram without compromising functionality results in a much clearer design direction and improves how easily the software design can be understood.
