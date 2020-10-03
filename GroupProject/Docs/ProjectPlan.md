@@ -53,7 +53,7 @@ The Job Comparison App empowers working professionals to rank their current job 
 	* Designs test plan.
 	* Implements test cases.
 	* Executes test cases.
-	* Reports all bugs to the lead developer and rest of the team.
+	* Reports all bugs to the Lead Developer and rest of the team.
 * Lead Developer:
 	* Ensures developed code meets the requirements.
 	* Develops code for the app.
