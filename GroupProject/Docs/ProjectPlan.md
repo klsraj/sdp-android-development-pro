@@ -9,29 +9,27 @@ The Job Comparison App empowers working professionals to rank their current job 
 
 ### Activity: Planning
 
-* Activity Description: Team members discuss the overarching goal of the project and distribute the workload for the coming weeks to ensure high-quality and punctual delivery of the software.
-* Entrance Criteria: Requirements Document
-* Exit Criteria: Detailed Project Plan
-
+* **Activity Description**: Team members discuss the overarching goal of the project and distribute the workload for the coming weeks to ensure high-quality and punctual delivery of the software.
+* **Entrance Criteria**: Requirements Document
+* **Exit Criteria**: Detailed Project Plan
 
 ### Activity: Design
 
-* Activity Description: Team members finalize the detailed architecture of the software that will be developed.
-* Entrance Criteria: Revised Requirements document
-* Exit Criteria: Design Document
+* **Activity Description**: Team members finalize the detailed architecture of the software that will be developed.
+* **Entrance Criteria**: Revised Requirements document
+* **Exit Criteria**: Design Document
 
 ### Activity: App Development & Code Implementation
 
-* Activity Description: Team members implement code in accordance with the Design Document and Requirements.
-* Entrance Criteria: Design document
-* Exit Criteria: Android app and Revised Design Document
-
+* **Activity Description**: Team members implement code in accordance with the Design Document and Requirements.
+* **Entrance Criteria**: Design document
+* **Exit Criteria**: Android app and Revised Design Document
 
 ### Activity: App Testing
 
-* Activity Description: Team members develop and execute test cases, report bugs, and create hot fixes to ensure high-quality software is delivered.
-* Entrance Criteria: Android App
-* Exit Criteria: Robust test design with test cases that cover as many practical scenarios as needed to ensure the code implementation meets all the requirements.
+* **Activity Description**: Team members develop and execute test cases, report bugs, and create hot fixes to ensure high-quality software is delivered.
+* **Entrance Criteria**: Android App
+* **Exit Criteria**: Robust test design with test cases that cover as many practical scenarios as needed to ensure the code implementation meets all the requirements.
 
 
 ## 3 Team
