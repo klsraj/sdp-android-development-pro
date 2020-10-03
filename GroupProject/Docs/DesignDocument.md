@@ -54,7 +54,8 @@ The hardware that the system must operate with is the Android device that the ap
 
 ### 2.1 Component Diagram
 
-*This section should provide and describe a diagram that shows the various components and how they are connected. This diagram shows the logical/functional components of the system, where each component represents a cluster of related functionality. In the case of simple systems, where there is a single component, this diagram may be unnecessary; in these cases, simply state so and concisely state why.*
+*This section should provide and describe a diagram that shows the various components and how they are connected. This diagram shows the logical/functional components of the system, where each component represents a cluster of related functionality. In the case of simple systems, where there is a single component, this diagram may be unnecessary; in these cases, simply state so and concisely state why.*  
+![Component Diagram](./images/component_diagram.png) 
 
 ### 2.2 Deployment Diagram
 
@@ -83,9 +84,9 @@ The system is a GUI-based system that will rely on the user interacting with a u
 
 **Main Menu**  
 ![Main Menu: UI Mockup](./images/ui_mockup_screen1.png)  
-
+   
 **Entering Current Job**  
 ![Entering Current Job: UI Mockup](./images/ui_mockup_screen2.png)
-
+  
 **Confirming Current Job**  
 ![Confirming Current Job: UI Mockup](./images/ui_mockup_screen3.png)  
