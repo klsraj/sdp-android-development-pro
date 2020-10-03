@@ -59,7 +59,7 @@ The hardware that the system must operate with is the Android device that the ap
 ### 2.2 Deployment Diagram
 
 *This section should describe how the different components will be deployed on actual hardware devices. Similar to the previous subsection, this diagram may be unnecessary for simple systems; in these cases, simply state so and concisely state why.*  
-A deployment diagram is not strictly necessary because this system is a simple system. The only device that this system will be deployed on is an Android device and there are no external interfaces to other devices. A representative deployment diagram can be seen below.
+A deployment diagram is not strictly necessary because this system is a simple system. The only device that this system will be deployed on is an Android device and there are no external interfaces to other devices. A representative deployment diagram can be seen below.  
 ![Deployment Diagram](./images/deployment_diagram.png) 
 
 
@@ -81,11 +81,11 @@ The system will be utilizing an OO design with the internal structure of the sof
 *For GUI-based systems, this section should provide the specific format/layout of the user interface of the system (e.g., in the form of graphical mockups).*  
 The system is a GUI-based system that will rely on the user interacting with a user interface in order to achieve its desired functions. The following graphical mockups below show how a user might interact with and use the system.  
 
-Main Menu  
-![Main Menu: UI Mockup](./images/ui_mockup_screne1.png)  
+**Main Menu**  
+![Main Menu: UI Mockup](./images/ui_mockup_screen1.png)  
 
-Entering Current Job  
+**Entering Current Job**  
 ![Entering Current Job: UI Mockup](./images/ui_mockup_screen2.png)
 
-Confirming Current Job  
+**Confirming Current Job**  
 ![Confirming Current Job: UI Mockup](./images/ui_mockup_screen3.png)  
