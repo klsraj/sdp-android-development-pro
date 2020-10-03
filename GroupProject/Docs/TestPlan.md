@@ -52,20 +52,16 @@ The majority of the test cases will be writen using Junit.Some IDE like Intellij
 
 
 ## 2 Test Cases
-*This section should be the core of this document. You should provide a table of test cases, one per row. For each test case, the table should provide its purpose, the steps necessary to perform the test, the expected result, the actual result (to be filled later), pass/fail information (to be filled later), and any additional information you think is relevant.
-Purpose	                                                     Steps	                                                                  Expected                                   Actual           P/F
-Test Add job	                      click "addJob" in the main menu, input all the information of job	                        the job is added
-Test Edit job	                      click "editJob" in the main menu, modify the information of job	                        the job is edited
-Test set weight	                      click "setWeight" in the main menu , input the information of weight	                    the weight is set
-Test gotoMenu method	              click "editJob" in the main menu, go to the job interface, click"gotoMenu"                go back to main menu
-Test Add current job	              click "addJob" in the main menu, input all the information of job with "current==ture"	current job is added
-Test compare current job	          click "compareJob(job1)"in the main menu	                                                a screen shows the compared result
-Test compare two job	              click "compareJob(job1, job2)"in the main menu	                                        a screen shows the compared result
-Test displayRanking method	          in the compare screen, click "displayRanking"	                                            ranking result shows in the screen
-Test saveJob method                   click "editJob" in the main menu, modify the information, click "saveJob"                 the Job is saved
- 
-   
+*This section should be the core of this document. You should provide a table of test cases, one per row. For each test case, the table should provide its purpose, the steps necessary to perform the test, the expected result, the actual result (to be filled later), pass/fail information (to be filled later), and any additional information you think is relevant.*
+  
 |   Purpose    |                  Steps                                              |             Expected            |    Actual   | P/F |            
 | ------------ | --------------------------------------------------------------------| ------------------------------- | ------------|-----|
-| Test Add job |  click "addJob" in the main menu, input all the information of job	 | the job is edited               |-------------|-----|
-
+| Test Add job |  click "addJob" in the main menu, input all the information of job	 | the job is added               |              |     |
+| Test Edit job|  click "editJob" in the main menu, modify the information of job	 | the job is edited              |              |     |
+| Test set weight|  click "setWeight" in the main menu , input the information of weight	  | the weight is set      |             |       |
+| Test gotoMenu method|  click "editJob" in the main menu, go to the job interface, click"gotoMenu"    | go back to main menu   |              |       |
+| Test Add current job|  click "addJob" in the main menu, input all the information of job with "current==ture"   | current job is added  |       |       |  
+| Test compare current job	|   click "compareJob(job1)"in the main menu	  |  a screen shows the compared result |                  |                  |
+| Test compare two job		|  click "compareJob(job1, job2)"in the main menu		  | a screen shows the compared result |                  |                  |
+| Test displayRanking method			|  in the compare screen, click "displayRanking"		  | ranking result shows in the screen |                  |                  |
+| Test saveJob method  			|  click "editJob" in the main menu, modify the information, click "saveJob"   	  |  the Job is saved         |             |     |
