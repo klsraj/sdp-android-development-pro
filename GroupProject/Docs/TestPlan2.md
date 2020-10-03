@@ -7,6 +7,7 @@
 ## 1 Testing Strategy
 
 ### 1.1 Overall strategy
+
 *This section should provide details about your unit-, integration-, system-, and regression-testing strategies. In particular, it should discuss which activities you will perform as part of your testing process, and who will perform such activities.*
 
 Unit Tests
@@ -39,6 +40,7 @@ The test case will be evaluated on how well they fulfill the requirements of the
 Also the test case should statisfty the extrarequirement in the user documents.
 
 ### 1.4 Bug Tracking
+
 *Describe how bugs and enhancement requests will be tracked.*
 Bugs will be reported in the github webpage so that the group member can discuss and come up with a solution according to each problems. 
 Request enhancement can be done in the same way. We will take a look at the app after initial design and put all the suggetions together for the further refinement.
@@ -62,3 +64,8 @@ Test compare two job	              click "compareJob(job1, job2)"in the main men
 Test displayRanking method	          in the compare screen, click "displayRanking"	                                            ranking result shows in the screen
 Test saveJob method                   click "editJob" in the main menu, modify the information, click "saveJob"                 the Job is saved
  
+   
+|   Purpose    |                  Steps                                              |             Expected            |    Actual   | P/F |            
+| ------------ | --------------------------------------------------------------------| ------------------------------- | ------------|-----|
+| Test Add job |  click "addJob" in the main menu, input all the information of job	 | the job is edited               |-------------|-----|
+
