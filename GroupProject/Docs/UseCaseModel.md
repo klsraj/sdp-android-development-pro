@@ -3,11 +3,11 @@
 
 The following use case diagram is based on the requirement provided for job comparison application. 
 
-**Author**: Team120
+**Author**: Team 120
 
 ## 1 Use Case Diagram
 
-![Use Case Diagram](./UseCase_diagram.png) 
+![Use Case Diagram](./images/use_case_diagram.png) 
 
 ## 2 Use Case Descriptions
 
