@@ -1,6 +1,6 @@
 # Project Plan
 
-##### Author: Fadi Habashy (Team 120)
+**Author**: Fadi Habashy (Team 120)
 
 ## 1 Introduction
 The Job Comparison App empowers working professionals to rank their current job offer with competing job offers based on their self-imposed criteria.

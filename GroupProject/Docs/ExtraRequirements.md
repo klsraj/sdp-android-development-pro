@@ -1,6 +1,6 @@
 # Extra Requirements
 
-#### Author: Fadi Habashy (Team 120)
+**Author**: Fadi Habashy (Team 120)
 
 ## List of Extra Requirements
 This file contains requirements that are not explicitly stated in the list of requirements provided by the customer. These requirements are mostly implementation-based.
