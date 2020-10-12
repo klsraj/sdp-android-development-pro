@@ -46,14 +46,17 @@ The majority of the test cases will be writen using Junit.Some IDE like Intellij
 
 
 ## 2 Test Cases
-| Purpose                    | Steps                                                                                  | Expected                           | Actual                       | P/F |
-| -------------------------- | -------------------------------------------------------------------------------------- | ---------------------------------- | ---------------------------- | --- |
-| Test Adding Job            | click "addJob" in the main menu, input all the information of job                      | the job is added                   | the job is not added         | F   |
-| Test Editing Job           | click "editJob" in the main menu, modify the information of job                        | the job is edited                  | job is not edited            | F   |
-| Test Setting Weight        | click "setWeight" in the main menu , input the information of weight                   | the weight is set                  | the weight is set            | P   |
-| Test gotoMenu Method       | click "editJob" in the main menu, go to the job interface, click"gotoMenu"             | go back to main menu               | go back to main menu         | P   |
-| Test Adding Current Job    | click "addJob" in the main menu, input all the information of job with "current==true" | current job is added               | the current job is not added | F   |
-| Test Comparing Current Job | click "compareJob(job1)"in the main menu                                               | a screen shows the compared result | no results shown             | F   |
-| Test Comparing Two Jobs    | click "compareJob(job1, job2)"in the main menu                                         | a screen shows the compared result | no results shown             | F   |
-| Test displayRanking Method | in the compare screen, click "displayRanking"                                          | ranking result shows in the screen | no results shown             | F   |
-| Test saveJob Method        | click "editJob" in the main menu, modify the information, click "saveJob"              | the Job is saved                   | job is not saved             | F   |
+| Purpose                     | Steps                                                                                             | Expected                                          | Actual                             | P/F |
+| --------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ---------------------------------- | --- |
+| Test Adding Current Job     | Click "Add/Edit Current Job" in the main menu, input all the information of current job           | Current job is added                              | Current job is not added           | F   |
+| Test Canceling Current Job  | Click "Add/Edit Current Job" in the main menu, input all new information of current job           | Current job is not saved or edited                | Current job is not saved or edited | P   |
+| Test Editing Current Job    | Click "Add/Edit Current Job" in the main menu, input all new information of current job           | Current job is edited                             | Current job is not edited          | F   |
+| Test Adding Job Offer       | Click "Add Job Offer" in the main menu, all the information of job offer                          | Job offer is added                                | Job offer is not added             | F   |
+| Test Cancelling Job Offer   | Click "Add Job Offer" in the main menu, all the information of job offer                          | Job offer is not saved or edited                  | Job offer is not saved or edited   | P   |
+| Test Saving Weights         | Click "Adjust Ranking Weights" in the main menu , input the weight info, click "Save"             | Weights are saved                                 | Weight are saved                   | P   |
+| Test Cancelling Weight      | Click "Adjust Ranking Weights" in the main menu , input the weight info, click "Cancel"           | Weights are not saved                             | Weight are not saved               | P   |
+| Test Returning to Menu      | Click "Cancel" or "Save" while in various activity menus                                          | App returns to menu                               | App returns to menu                | P   |
+| Test Comparing Current Job  | Click "Save and Compare with Current" after entering job offer info in the "Add Job Offer" screen | Table is shown comparing entered and current jobs | Placeholder results shown          | F   |
+| Test Comparing Two Jobs     | Select two jobs in the "Rank Job Offers" screen and click "Compare Jobs"                          | Table is shown comparing selected jobs            | Placeholder results shown          | F   |
+| Test Ranking Jobs Algorithm | Click "Rank Job Offers" in the main menu                                                          | Table is shown ranking all jobs                   | Placeholder results shown          | F   |
+| Test App State Persistence  | Perform other test cases, close the app, then reopen to see if the app state persists             | App state persists                                | App state does not persist         | F   |
