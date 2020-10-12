@@ -64,16 +64,16 @@ public class JobCurrent extends AppCompatActivity {
                 String bonus = text_bonus_current.getText().toString();
                 String retirement = text_retirement_current.getText().toString();
                 String leave = text_leave_current.getText().toString();
-//                Job myjob = new Job();
-//                myjob.setJob(job);
-//                myjob.setCompany(company);
-//                myjob.setLocation(location);
-//                myjob.setCol(col);
-//                myjob.setCommute(commute);
-//                myjob.setSalary(salary);
-//                myjob.setBonus(bonus);
-//                myjob.setRetirement(retirement);
-//                myjob.setLeave(leave);
+                Job myjob = new Job();
+                myjob.setJob(job);
+                myjob.setCompany(company);
+                myjob.setLocation(location);
+                myjob.setCol(col);
+                myjob.setCommute(commute);
+                myjob.setSalary(salary);
+                myjob.setBonus(bonus);
+                myjob.setRetirement(retirement);
+                myjob.setLeave(leave);
 
                 Intent intent = new Intent(JobCurrent.this, MainActivity.class);
                 startActivity(intent);
