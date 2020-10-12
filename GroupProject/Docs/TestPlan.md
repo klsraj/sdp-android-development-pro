@@ -11,9 +11,9 @@ There will be a unit test for each class individually. The unit test will be per
 After each module is built, it will be passed to the main tester to test with a few input to check the functionality. These tests should not be so complicated,
 as more complex testing will be implemented in the integration part. And the unit test should ensure that each class work as expected so we can continuelly bulid the module.
 
-Intergration Tests  
-Most of the intergration tests will be performed mainly by the main tester, and some of the test will be performed by the developers. In the UML diagram, we have
-five class for our job offer app. The intergration test will focus on test the interaction among different modules. For example, it should test out the relation between job and joblist class,
+Integration Tests  
+Most of the integration tests will be performed mainly by the main tester, and some of the test will be performed by the developers. In the UML diagram, we have
+five class for our job offer app. The integration test will focus on test the interaction among different modules. For example, it should test out the relation between job and joblist class,
 also the interaction between weights and ranking list. These tests should be more complex than unit test, but make sure that the number of class involved in each integration test is not over three.
 
 System Tests  
@@ -46,14 +46,14 @@ The majority of the test cases will be writen using Junit.Some IDE like Intellij
 
 
 ## 2 Test Cases
-| Purpose                    | Steps                                                                                  | Expected                           | Actual | P/F |
-| -------------------------- | -------------------------------------------------------------------------------------- | ---------------------------------- | ------ | --- |
-| Test Adding Job            | click "addJob" in the main menu, input all the information of job                      | the job is added                   |        |     |
-| Test Editing Job           | click "editJob" in the main menu, modify the information of job                        | the job is edited                  |        |     |
-| Test Setting Weight        | click "setWeight" in the main menu , input the information of weight                   | the weight is set                  |        |     |
-| Test gotoMenu Method       | click "editJob" in the main menu, go to the job interface, click"gotoMenu"             | go back to main menu               |        |     |
-| Test Adding Current Job    | click "addJob" in the main menu, input all the information of job with "current==ture" | current job is added               |        |     |
-| Test Comparing Current Job | click "compareJob(job1)"in the main menu                                               | a screen shows the compared result |        |     |
-| Test Comparing Two Jobs    | click "compareJob(job1, job2)"in the main menu                                         | a screen shows the compared result |        |     |
-| Test displayRanking Method | in the compare screen, click "displayRanking"                                          | ranking result shows in the screen |        |     |
-| Test saveJob Method        | click "editJob" in the main menu, modify the information, click "saveJob"              | the Job is saved                   |        |     |
+| Purpose                    | Steps                                                                                  | Expected                           | Actual                       | P/F |
+| -------------------------- | -------------------------------------------------------------------------------------- | ---------------------------------- | ---------------------------- | --- |
+| Test Adding Job            | click "addJob" in the main menu, input all the information of job                      | the job is added                   | the job is not added         | F   |
+| Test Editing Job           | click "editJob" in the main menu, modify the information of job                        | the job is edited                  | job is not edited            | F   |
+| Test Setting Weight        | click "setWeight" in the main menu , input the information of weight                   | the weight is set                  | the weight is set            | P   |
+| Test gotoMenu Method       | click "editJob" in the main menu, go to the job interface, click"gotoMenu"             | go back to main menu               | go back to main menu         | P   |
+| Test Adding Current Job    | click "addJob" in the main menu, input all the information of job with "current==true" | current job is added               | the current job is not added | F   |
+| Test Comparing Current Job | click "compareJob(job1)"in the main menu                                               | a screen shows the compared result | no results shown             | F   |
+| Test Comparing Two Jobs    | click "compareJob(job1, job2)"in the main menu                                         | a screen shows the compared result | no results shown             | F   |
+| Test displayRanking Method | in the compare screen, click "displayRanking"                                          | ranking result shows in the screen | no results shown             | F   |
+| Test saveJob Method        | click "editJob" in the main menu, modify the information, click "saveJob"              | the Job is saved                   | job is not saved             | F   |
