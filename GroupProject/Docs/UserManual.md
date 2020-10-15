@@ -1,7 +1,7 @@
-
 # User Manual 
 
 The following document will act as an instruction guide to provide a brief explanation of the JobCompare app and to give a walkthrough of the app's usage.  
+
 
 **Author**: Team120
 
@@ -23,6 +23,7 @@ Upon clicking on any options user will be directly taken to that screen.
 ![CurrentJob](./images/CurrentJob.png) 
 
 When the user selects option to Add/Edit Current job on the screen, they will be presented with the screen as shown above.  On this screen user can see different text fields to enter details about the current job or modified already provided values. User has two different action available on the screen, shown as the two buttons at the bottom of the screen. 
+
 If users clicks cancel, then all the entered or modified information will be discarded and user will be taken back to Main menu. If user clicks Save then information will be saved and users are redirected to main menu. 
 
 ## 3 Enter Job Offer
