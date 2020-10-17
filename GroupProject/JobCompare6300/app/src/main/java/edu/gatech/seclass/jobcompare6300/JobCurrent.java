@@ -79,18 +79,26 @@ public class JobCurrent extends AppCompatActivity {
         button_save_job_current.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Code that involves saving the entered details of the current job goes here
-                saveInDB(view);
-                Intent intent = new Intent(JobCurrent.this, MainActivity.class);
-                startActivity(intent);
-                Toast.makeText(getApplicationContext(),
-                        "Job offer entry saved",
-                        Toast.LENGTH_LONG)
-                        .show();
+                if (hasEmptyFields()) {
+                    Toast.makeText(getApplicationContext(),
+                            "Please fill in all fields",
+                            Toast.LENGTH_LONG)
+                            .show();
+                }
+                else {
+                    saveInDB(view);
+                    Intent intent = new Intent(JobCurrent.this, MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(),
+                            "Job offer entry saved",
+                            Toast.LENGTH_LONG)
+                            .show();
+                }
             }
         });
     }
-    public void saveInDB(View view) {
 
+    public void saveInDB(View view) {
         String job = text_job_current.getText().toString();
         String company = text_company_current.getText().toString();
         String location = text_location_current.getText().toString();
@@ -109,5 +117,22 @@ public class JobCurrent extends AppCompatActivity {
         else {
             dbManager.insert(1337, job, company, location, col, commute, salary, bonus, retirement, leave, 1);
         }
+    }
+
+    private boolean hasEmptyFields() {
+        int job = text_job_current.getText().toString().isEmpty() ? 0 : 1;
+        int company = text_company_current.getText().toString().isEmpty() ? 0 : 1;
+        int location = text_location_current.getText().toString().isEmpty() ? 0 : 1;
+        int col = text_col_current.getText().toString().isEmpty() ? 0 : 1;
+        int commute = text_commute_current.getText().toString().isEmpty() ? 0 : 1;
+        int salary = text_salary_current.getText().toString().isEmpty() ? 0 : 1;
+        int bonus = text_bonus_current.getText().toString().isEmpty() ? 0 : 1;
+        int retirement = text_retirement_current.getText().toString().isEmpty() ? 0 : 1;
+        int leave = text_leave_current.getText().toString().isEmpty() ? 0 : 1;
+
+        if ((job * company * location * col * commute * salary * bonus * retirement * leave) == 0)
+            return true;
+        else
+            return false;
     }
 }

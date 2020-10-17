@@ -67,13 +67,21 @@ public class JobActivity extends AppCompatActivity {
         button_save_job.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Code that involves saving the entered details of the job offer goes here
-                saveInDB(view);
-                Intent intent = new Intent(JobActivity.this, MainActivity.class);
-                startActivity(intent);
-                Toast.makeText(getApplicationContext(),
-                        "Job offer entry saved",
-                        Toast.LENGTH_SHORT)
-                        .show();
+                if (hasEmptyFields()) {
+                    Toast.makeText(getApplicationContext(),
+                            "Please fill in all fields",
+                            Toast.LENGTH_LONG)
+                            .show();
+                }
+                else {
+                    saveInDB(view);
+                    Intent intent = new Intent(JobActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(),
+                            "Job offer entry saved",
+                            Toast.LENGTH_SHORT)
+                            .show();
+                }
             }
         });
 
@@ -85,10 +93,6 @@ public class JobActivity extends AppCompatActivity {
 //                Intent intent = new Intent(JobActivity.this, ComparisonActivity.class);
 //                startActivity(intent);
                 Cursor cursor = dbManager.getAllData();
-                if (cursor.getCount() == 0) {
-                    showMessage("Error", "Nothing found");
-                    return;
-                }
 
                 StringBuffer buffer = new StringBuffer();
                 while (cursor.moveToNext()) {
@@ -97,7 +101,6 @@ public class JobActivity extends AppCompatActivity {
                     buffer.append("Company: " + cursor.getString(2) + "\n");
                     buffer.append("Location: " + cursor.getString(3) + "\n");
                 }
-                showMessage("Data", buffer.toString());
             }
         });
 
@@ -105,13 +108,21 @@ public class JobActivity extends AppCompatActivity {
         button_another_job.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Code that involves saving the entered details of the job offer goes here
-                saveInDB(view);
-                Intent intent = new Intent(JobActivity.this, JobActivity.class);
-                startActivity(intent);
-                Toast.makeText(getApplicationContext(),
-                        "Enter another job offer",
-                        Toast.LENGTH_SHORT)
-                        .show();
+                if (hasEmptyFields()) {
+                    Toast.makeText(getApplicationContext(),
+                            "Please fill in all fields",
+                            Toast.LENGTH_LONG)
+                            .show();
+                }
+                else {
+                    saveInDB(view);
+                    Intent intent = new Intent(JobActivity.this, JobActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(),
+                            "Job offer entry saved. Enter another job offer",
+                            Toast.LENGTH_SHORT)
+                            .show();
+                }
             }
         });
     }
@@ -132,11 +143,21 @@ public class JobActivity extends AppCompatActivity {
 
         dbManager.insert(1, job, company, location, col, commute, salary, bonus, retirement, leave, 0);
     }
-    public void showMessage(String title,String Message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(Message);
-        builder.show();
+
+    private boolean hasEmptyFields() {
+        int job = text_job.getText().toString().isEmpty() ? 0 : 1;
+        int company = text_company.getText().toString().isEmpty() ? 0 : 1;
+        int location = text_location.getText().toString().isEmpty() ? 0 : 1;
+        int col = text_col.getText().toString().isEmpty() ? 0 : 1;
+        int commute = text_commute.getText().toString().isEmpty() ? 0 : 1;
+        int salary = text_salary.getText().toString().isEmpty() ? 0 : 1;
+        int bonus = text_bonus.getText().toString().isEmpty() ? 0 : 1;
+        int retirement = text_retirement.getText().toString().isEmpty() ? 0 : 1;
+        int leave = text_leave.getText().toString().isEmpty() ? 0 : 1;
+
+        if ((job * company * location * col * commute * salary * bonus * retirement * leave) == 0)
+            return true;
+        else
+            return false;
     }
 }
