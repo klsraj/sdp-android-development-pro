@@ -70,7 +70,7 @@ public class JobActivity extends AppCompatActivity {
                 if (hasEmptyFields()) {
                     Toast.makeText(getApplicationContext(),
                             "Please fill in all fields",
-                            Toast.LENGTH_LONG)
+                            Toast.LENGTH_SHORT)
                             .show();
                 }
                 else {
@@ -111,7 +111,7 @@ public class JobActivity extends AppCompatActivity {
                 if (hasEmptyFields()) {
                     Toast.makeText(getApplicationContext(),
                             "Please fill in all fields",
-                            Toast.LENGTH_LONG)
+                            Toast.LENGTH_SHORT)
                             .show();
                 }
                 else {

@@ -82,7 +82,7 @@ public class JobCurrent extends AppCompatActivity {
                 if (hasEmptyFields()) {
                     Toast.makeText(getApplicationContext(),
                             "Please fill in all fields",
-                            Toast.LENGTH_LONG)
+                            Toast.LENGTH_SHORT)
                             .show();
                 }
                 else {
@@ -91,7 +91,7 @@ public class JobCurrent extends AppCompatActivity {
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(),
                             "Job offer entry saved",
-                            Toast.LENGTH_LONG)
+                            Toast.LENGTH_SHORT)
                             .show();
                 }
             }
