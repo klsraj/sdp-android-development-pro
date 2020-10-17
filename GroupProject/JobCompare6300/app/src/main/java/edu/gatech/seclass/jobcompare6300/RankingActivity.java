@@ -42,8 +42,8 @@ public class RankingActivity extends AppCompatActivity {
         final Cursor cursor = dbManager.getAllData();
         final int[] idIndex = new int[cursor.getCount()];
 
-        if (cursor.getCount() == 0) {
-            Toast.makeText(getApplicationContext(), "No jobs entered", Toast.LENGTH_SHORT).show();
+        if (cursor.getCount() < 2) {
+            Toast.makeText(getApplicationContext(), "Enter at least 1 job offer", Toast.LENGTH_SHORT).show();
         }
         else {
             jobs = new String[cursor.getCount()];
