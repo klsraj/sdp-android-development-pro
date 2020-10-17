@@ -22,7 +22,7 @@ public class WeightsDBHelper extends SQLiteOpenHelper {
     public static final String leave_weight = "leave_weight";
 
     // Database Information
-    static final String DB_NAME = "JOB.DB";
+    static final String DB_NAME = "WEIGHTS.DB";
 
     // database version
     static final int DB_VERSION = 1;
@@ -42,4 +42,5 @@ public class WeightsDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
+
 }

@@ -59,6 +59,7 @@ public class WeightsDBManager {
         contentValues.put(WeightsDBHelper.retirement_weight, retirement_weight);
         contentValues.put(WeightsDBHelper.leave_weight, leave_weight);
         int i = database.update(WeightsDBHelper.TABLE_NAME, contentValues, WeightsDBHelper._ID + " = " + _id, null);
+
         return i;
     }
 

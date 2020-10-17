@@ -2,6 +2,7 @@ package edu.gatech.seclass.jobcompare6300;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -95,6 +96,11 @@ public class WeightsActivity extends AppCompatActivity {
                         "Entered weights saved",
                         Toast.LENGTH_LONG)
                         .show();
+                Cursor data = dbManager.fetch();
+                String[] test = data.getColumnNames();
+                String test1 = data.getString(0);
+                String test2 = data.getString(1);
+                showMessage("Data", test2);
             }
         });
     }
@@ -127,11 +133,26 @@ public class WeightsActivity extends AppCompatActivity {
         if(cursor.getCount() > 0) {
             dbManager.update(100,commute_timeText,salary,bonus,retirementValue,leaveValue);
             Log.v("Text","Update in DB Complete");
-        }else {
+            Toast.makeText(getApplicationContext(),
+                    "SAVED",
+                    Toast.LENGTH_SHORT)
+                    .show();
+        }
+        else {
             dbManager.insert(100, commute_timeText, salary, bonus, retirementValue, leaveValue);
             Log.v("Text","Insert in DB Complete");
+            Toast.makeText(getApplicationContext(),
+                    "INSERTED",
+                    Toast.LENGTH_SHORT)
+                    .show();
         }
+    }
 
-
+    public void showMessage(String title,String Message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Message);
+        builder.show();
     }
 }
