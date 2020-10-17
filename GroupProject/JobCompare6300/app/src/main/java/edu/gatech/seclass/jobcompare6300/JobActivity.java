@@ -50,9 +50,6 @@ public class JobActivity extends AppCompatActivity {
 
         dbManager = new JobsDBManager(this);
         dbManager.open();
-        Cursor cursor = dbManager.fetch();
-
-
 
         button_cancel_job = findViewById(R.id.button_cancel_job);
         button_cancel_job.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +58,7 @@ public class JobActivity extends AppCompatActivity {
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(),
                         "Job offer entry cancelled",
-                        Toast.LENGTH_LONG)
+                        Toast.LENGTH_SHORT)
                         .show();
             }
         });
@@ -70,19 +67,13 @@ public class JobActivity extends AppCompatActivity {
         button_save_job.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Code that involves saving the entered details of the job offer goes here
-                //
                 saveInDB(view);
                 Intent intent = new Intent(JobActivity.this, MainActivity.class);
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(),
                         "Job offer entry saved",
-                        Toast.LENGTH_LONG)
+                        Toast.LENGTH_SHORT)
                         .show();
-
-                Cursor data = dbManager.fetch();
-                String[] test = data.getColumnNames();
-                Log.v("Data",String.valueOf(data.getInt(1)));
-                Log.v("Data",String.valueOf(data.getInt(2)));
             }
         });
 
@@ -114,12 +105,12 @@ public class JobActivity extends AppCompatActivity {
         button_another_job.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Code that involves saving the entered details of the job offer goes here
-                //
+                saveInDB(view);
                 Intent intent = new Intent(JobActivity.this, JobActivity.class);
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(),
                         "Enter another job offer",
-                        Toast.LENGTH_LONG)
+                        Toast.LENGTH_SHORT)
                         .show();
             }
         });
@@ -127,9 +118,9 @@ public class JobActivity extends AppCompatActivity {
 
     public void saveInDB(View view) {
 
-        int job = Integer.parseInt(text_job.getText().toString());
-        int company = Integer.parseInt(text_company.getText().toString());
-        int location = Integer.parseInt(text_location.getText().toString());
+        String job = text_job.getText().toString();
+        String company = text_company.getText().toString();
+        String location = text_location.getText().toString();
         int col = Integer.parseInt(text_col.getText().toString());
         int commute = Integer.parseInt(text_commute.getText().toString());
         int salary = Integer.parseInt(text_salary.getText().toString());
@@ -140,24 +131,6 @@ public class JobActivity extends AppCompatActivity {
         Log.v("Text","Trying to Save in DB");
 
         dbManager.insert(1, job, company, location, col, commute, salary, bonus, retirement, leave, 0);
-
-//        Cursor cursor = dbManager.fetch();
-//        if(cursor.getCount() > 0) {
-//            dbManager.insert(500,job,company,location,col, commute, salary, bonus, retirement, leave, 0);
-//            Log.v("Text","Update in DB Complete");
-//            Toast.makeText(getApplicationContext(),
-//                    "SAVED",
-//                    Toast.LENGTH_SHORT)
-//                    .show();
-//        }
-//        else {
-//            dbManager.insert(500,job,company,location,col, commute, salary, bonus, retirement, leave, 0);
-//            Log.v("Text","Insert in DB Complete");
-//            Toast.makeText(getApplicationContext(),
-//                    "INSERTED",
-//                    Toast.LENGTH_SHORT)
-//                    .show();
-//        }
     }
     public void showMessage(String title,String Message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

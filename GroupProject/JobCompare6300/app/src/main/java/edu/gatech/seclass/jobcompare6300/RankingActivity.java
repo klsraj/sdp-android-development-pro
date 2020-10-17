@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -41,7 +40,6 @@ public class RankingActivity extends AppCompatActivity {
         Cursor cursor = dbManager.getAllData();
         if (cursor.getCount() == 0) {
             Toast.makeText(getApplicationContext(), "No jobs entered", Toast.LENGTH_SHORT).show();
-            return;
         }
         else {
             jobs = new String[cursor.getCount()];

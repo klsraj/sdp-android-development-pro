@@ -34,8 +34,8 @@ public class JobsDBHelper extends SQLiteOpenHelper {
 
     // Creating table query
     private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + _ID
-            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + job + " INTEGER , " + company + " INTEGER , " + location
-            + " INTEGER , " + col + " INTEGER , " + commute + " INTEGER , "
+            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + job + " TEXT , " + company + " TEXT , " + location
+            + " TEXT , " + col + " INTEGER , " + commute + " INTEGER , "
             + salary + " INTEGER , " + bonus + " INTEGER , " + retirement + " INTEGER , "
             + leave + " INTEGER , " + current + " INTEGER);";
 

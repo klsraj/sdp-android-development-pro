@@ -9,7 +9,7 @@ import android.util.Log;
 
 public class WeightsDBManager {
 
-    private WeightsDBHelper  dbHelper;
+    private WeightsDBHelper dbHelper;
 
     private Context context;
 
@@ -65,6 +65,10 @@ public class WeightsDBManager {
 
     public void delete(long _id) {
         database.delete(WeightsDBHelper.TABLE_NAME, WeightsDBHelper._ID + "=" + _id, null);
+    }
+
+    public void reset() {
+        database.execSQL("DELETE FROM " + WeightsDBHelper.TABLE_NAME + ";");
     }
 
 }

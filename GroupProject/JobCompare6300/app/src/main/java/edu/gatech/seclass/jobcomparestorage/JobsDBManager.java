@@ -29,9 +29,11 @@ public class JobsDBManager {
         dbHelper.close();
     }
 
-    public void insert(int id, int job, int company, int location, int col, int commute, int salary, int bonus, int retirement, int leave, int current) {
+    public void insert(int id, String job, String company, String location, int col, int commute, int salary, int bonus, int retirement, int leave, int current) {
         ContentValues contentValue = new ContentValues();
-//        contentValue.put(JobsDBHelper._ID, id);
+        if (current > 0) {
+            contentValue.put(JobsDBHelper._ID, id);
+        }
         contentValue.put(JobsDBHelper.job, job);
         contentValue.put(JobsDBHelper.company, company);
         contentValue.put(JobsDBHelper.location, location);
@@ -45,9 +47,20 @@ public class JobsDBManager {
         database.insert(JobsDBHelper.TABLE_NAME, null, contentValue);
     }
 
-    public Cursor fetch() {
+//    public Cursor fetch() {
+//        String[] columns = new String[] { JobsDBHelper._ID, JobsDBHelper.job, JobsDBHelper.company, JobsDBHelper.location, JobsDBHelper.col, JobsDBHelper.commute, JobsDBHelper.salary, JobsDBHelper.bonus, JobsDBHelper.retirement, JobsDBHelper.leave, JobsDBHelper.current };
+//        Cursor cursor = database.query(JobsDBHelper.TABLE_NAME, columns, "_ID = 500", null, null, null, null);
+//        if (cursor != null) {
+//            Log.v("Text","Inside If");
+//            cursor.moveToFirst();
+//            Log.v("Text","If 2nd line");
+//        }
+//        return cursor;
+//    }
+
+    public Cursor fetchCurrent() {
         String[] columns = new String[] { JobsDBHelper._ID, JobsDBHelper.job, JobsDBHelper.company, JobsDBHelper.location, JobsDBHelper.col, JobsDBHelper.commute, JobsDBHelper.salary, JobsDBHelper.bonus, JobsDBHelper.retirement, JobsDBHelper.leave, JobsDBHelper.current };
-        Cursor cursor = database.query(JobsDBHelper.TABLE_NAME, columns, "_ID = 500", null, null, null, null);
+        Cursor cursor = database.query(JobsDBHelper.TABLE_NAME, columns, "_ID = 1337", null, null, null, null);
         if (cursor != null) {
             Log.v("Text","Inside If");
             cursor.moveToFirst();
@@ -61,9 +74,8 @@ public class JobsDBManager {
         return cursor;
     }
 
-    public int update(int _id, int job, int company, int location, int col, int commute, int salary, int bonus, int retirement, int leave, int current) {
+    public int update(int _id, String job, String company, String location, int col, int commute, int salary, int bonus, int retirement, int leave, int current) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(JobsDBHelper._ID, _id);
         contentValues.put(JobsDBHelper.job, job);
         contentValues.put(JobsDBHelper.company, company);
         contentValues.put(JobsDBHelper.location, location);
@@ -81,6 +93,10 @@ public class JobsDBManager {
 
     public void delete(long _id) {
         database.delete(JobsDBHelper.TABLE_NAME, JobsDBHelper._ID + "=" + _id, null);
+    }
+
+    public void reset() {
+        database.execSQL("DELETE FROM  " + JobsDBHelper.TABLE_NAME + ";");
     }
 
 }
