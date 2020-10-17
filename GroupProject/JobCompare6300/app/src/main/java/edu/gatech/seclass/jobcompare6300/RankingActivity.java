@@ -89,6 +89,8 @@ public class RankingActivity extends AppCompatActivity {
                     // For now, just show which indexes were selected and pass them to compare
                     Toast.makeText(getApplicationContext(), "The indexes are: " + String.valueOf(job_1) + ", " + String.valueOf(job_2), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RankingActivity.this, ComparisonActivity.class);
+                    intent.putExtra("job1",job_1);
+                    intent.putExtra("job2",job_2);
                     startActivity(intent);
                 }
                 // If more or less than 2 jobs were selected to compare, provide error message

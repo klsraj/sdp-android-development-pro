@@ -69,6 +69,17 @@ public class JobsDBManager {
         return cursor;
     }
 
+    public Cursor fetchById(int id) {
+        String[] columns = new String[] { JobsDBHelper._ID, JobsDBHelper.job, JobsDBHelper.company, JobsDBHelper.location, JobsDBHelper.col, JobsDBHelper.commute, JobsDBHelper.salary, JobsDBHelper.bonus, JobsDBHelper.retirement, JobsDBHelper.leave, JobsDBHelper.current };
+        Cursor cursor = database.query(JobsDBHelper.TABLE_NAME, columns, "_ID = " + id, null, null, null, null);
+        if (cursor != null) {
+            Log.v("Text","Inside If");
+            cursor.moveToFirst();
+            Log.v("Text","If 2nd line");
+        }
+        return cursor;
+    }
+
     public Cursor getAllData() {
         Cursor cursor = database.rawQuery("Select * from " + JobsDBHelper.TABLE_NAME, null);
         return cursor;
