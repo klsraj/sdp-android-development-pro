@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -37,7 +38,10 @@ public class RankingActivity extends AppCompatActivity {
         String[] jobs;
         String[] companies;
 
-        Cursor cursor = dbManager.getAllData();
+
+        final Cursor cursor = dbManager.getAllData();
+        final int[] idIndex = new int[cursor.getCount()];
+
         if (cursor.getCount() == 0) {
             Toast.makeText(getApplicationContext(), "No jobs entered", Toast.LENGTH_SHORT).show();
         }
@@ -49,6 +53,8 @@ public class RankingActivity extends AppCompatActivity {
             while (cursor.moveToNext()) {
                 jobs[i] = cursor.getString(1);
                 companies[i] = cursor.getString(2);
+                idIndex[i] = Integer.parseInt(cursor.getString(0));
+                Log.v("Text",cursor.getString(0));
                 i++;
             }
             loadRanking(jobs, companies);
@@ -89,8 +95,10 @@ public class RankingActivity extends AppCompatActivity {
                     // For now, just show which indexes were selected and pass them to compare
                     Toast.makeText(getApplicationContext(), "The indexes are: " + String.valueOf(job_1) + ", " + String.valueOf(job_2), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RankingActivity.this, ComparisonActivity.class);
-                    intent.putExtra("job1",job_1);
-                    intent.putExtra("job2",job_2);
+                    intent.putExtra("job1",idIndex[job_1]);
+                    intent.putExtra("job2",idIndex[job_2]);
+                    Log.v("Text","Inside Ranking Job1 : "+idIndex[job_1]);
+                    Log.v("Text","Inside Ranking Job2 : "+idIndex[job_2]);
                     startActivity(intent);
                 }
                 // If more or less than 2 jobs were selected to compare, provide error message

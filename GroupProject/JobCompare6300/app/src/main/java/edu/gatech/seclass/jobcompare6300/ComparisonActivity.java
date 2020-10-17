@@ -33,12 +33,23 @@ public class ComparisonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comparison);
 
+        jobsDB = new JobsDBManager(this);
+        jobsDB.open();
+
         int Job1 = getIntent().getIntExtra("job1",0);
         int Job2 = getIntent().getIntExtra("job2",1);
 
         Log.v("Text","Inside Comparison");
         Log.v("Text","Job1 : "+Job1);
         Log.v("Text","Job2 : "+Job2);
+
+//        Cursor cursor = jobsDB.getAllData();
+//        if(cursor.getCount() > 0){
+//            cursor.moveToFirst();
+//            do{
+//                Log.v("Text",cursor.getString(cursor.getColumnIndex(JobsDBHelper._ID)));
+//            }while (cursor.moveToNext());
+//        }
 
         loadComparison(Job1,Job2);
 
@@ -71,8 +82,8 @@ public class ComparisonActivity extends AppCompatActivity {
         String[] job1 = getJobfromDB(Job1);
         String[] job2 = getJobfromDB(Job2);
 
-        double job1Score = getJobScore(Integer.parseInt(job1[4]), Integer.parseInt(job1[5]), Integer.parseInt(job1[6]), Integer.parseInt(job1[7]), Integer.parseInt(job1[3]));
-        double job2Score = getJobScore(Integer.parseInt(job2[4]), Integer.parseInt(job2[5]), Integer.parseInt(job2[6]), Integer.parseInt(job2[7]), Integer.parseInt(job2[3]));
+        double job1Score = getJobScore(Integer.parseInt(job1[4]), Integer.parseInt(job1[5]), Integer.parseInt(job1[6]), Integer.parseInt(job1[7]), Double.parseDouble(job1[3]));
+        double job2Score = getJobScore(Integer.parseInt(job2[4]), Integer.parseInt(job2[5]), Integer.parseInt(job2[6]), Integer.parseInt(job2[7]), Double.parseDouble(job2[3]));
 
         if(job1Score > job2Score){
             example_job1 = job1;
@@ -84,8 +95,6 @@ public class ComparisonActivity extends AppCompatActivity {
         }
 
         TableLayout table_job_comparison = (TableLayout) findViewById(R.id.table_job_comparison);
-
-
 
         table_job_comparison.setStretchAllColumns(true);
 
@@ -121,10 +130,9 @@ public class ComparisonActivity extends AppCompatActivity {
     }
 
     private String[] getJobfromDB(int jobId) {
-        jobsDB = new JobsDBManager(this);
-        jobsDB.open();
+
         String[] job = {"","","","","","","",""};
-        Cursor cursor = jobsDB.fetchById(1337+jobId);
+        Cursor cursor = jobsDB.fetchById(jobId);
         if(cursor.getCount()>0){
             cursor.moveToFirst();
             job[0] = cursor.getString(cursor.getColumnIndex(JobsDBHelper.job));
@@ -140,16 +148,16 @@ public class ComparisonActivity extends AppCompatActivity {
         return job;
     }
 
-    public double getJobScore(int AYS ,int AYB, int RBP, int LT, int CT){
+    public double getJobScore(int AYS ,int AYB, int RBP, int LT, double CT){
 
         weightsDB = new WeightsDBManager(this);
         weightsDB.open();
 
-        int commute= 0;
-        int salary= 0;
-        int retirement= 0;
-        int bonus= 0;
-        int leave= 0;
+        int commute= 1;
+        int salary= 1;
+        int retirement= 1;
+        int bonus= 1;
+        int leave= 1;
 
         Cursor cursor = weightsDB.fetch();
 
