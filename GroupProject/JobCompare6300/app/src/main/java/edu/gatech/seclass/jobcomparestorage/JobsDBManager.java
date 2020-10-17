@@ -29,7 +29,7 @@ public class JobsDBManager {
         dbHelper.close();
     }
 
-    public void insert(int id, String job, String company, String location, int col, int commute, int salary, int bonus, int retirement, int leave, int current) {
+    public void insert(int id, String job, String company, String location, int col, double commute, int salary, int bonus, int retirement, int leave, int current) {
         ContentValues contentValue = new ContentValues();
         if (current > 0) {
             contentValue.put(JobsDBHelper._ID, id);
@@ -85,7 +85,7 @@ public class JobsDBManager {
         return cursor;
     }
 
-    public int update(int _id, String job, String company, String location, int col, int commute, int salary, int bonus, int retirement, int leave, int current) {
+    public int update(int _id, String job, String company, String location, int col, double commute, int salary, int bonus, int retirement, int leave, int current) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(JobsDBHelper.job, job);
         contentValues.put(JobsDBHelper.company, company);

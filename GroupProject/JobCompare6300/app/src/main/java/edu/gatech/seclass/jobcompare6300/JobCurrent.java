@@ -95,7 +95,7 @@ public class JobCurrent extends AppCompatActivity {
         String company = text_company_current.getText().toString();
         String location = text_location_current.getText().toString();
         int col = Integer.parseInt(text_col_current.getText().toString());
-        int commute = Integer.parseInt(text_commute_current.getText().toString());
+        double commute = Double.parseDouble(text_commute_current.getText().toString());
         int salary = Integer.parseInt(text_salary_current.getText().toString());
         int bonus = Integer.parseInt(text_bonus_current.getText().toString());
         int retirement = Integer.parseInt(text_retirement_current.getText().toString());

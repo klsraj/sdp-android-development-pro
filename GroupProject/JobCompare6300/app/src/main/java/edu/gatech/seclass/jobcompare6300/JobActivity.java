@@ -122,7 +122,7 @@ public class JobActivity extends AppCompatActivity {
         String company = text_company.getText().toString();
         String location = text_location.getText().toString();
         int col = Integer.parseInt(text_col.getText().toString());
-        int commute = Integer.parseInt(text_commute.getText().toString());
+        double commute = Double.parseDouble(text_commute.getText().toString());
         int salary = Integer.parseInt(text_salary.getText().toString());
         int bonus = Integer.parseInt(text_bonus.getText().toString());
         int retirement = Integer.parseInt(text_retirement.getText().toString());
