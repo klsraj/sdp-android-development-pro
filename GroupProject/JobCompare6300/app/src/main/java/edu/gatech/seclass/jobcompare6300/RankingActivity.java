@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +38,7 @@ public class RankingActivity extends AppCompatActivity {
 
         String[] jobs;
         String[] companies;
+        String[] current;
 
 
         final Cursor cursor = dbManager.getAllData();
@@ -48,16 +50,18 @@ public class RankingActivity extends AppCompatActivity {
         else {
             jobs = new String[cursor.getCount()];
             companies = new String[cursor.getCount()];
+            current = new String[cursor.getCount()];
             int i = 0;
 
             while (cursor.moveToNext()) {
                 jobs[i] = cursor.getString(1);
                 companies[i] = cursor.getString(2);
+                current[i] = cursor.getString(10);
                 idIndex[i] = Integer.parseInt(cursor.getString(0));
                 Log.v("Text",cursor.getString(0));
                 i++;
             }
-            loadRanking(jobs, companies);
+            loadRanking(jobs, companies, current);
         }
 
         // Return to main menu
@@ -111,7 +115,7 @@ public class RankingActivity extends AppCompatActivity {
 
     }
 
-    public void loadRanking(String[] jobs, String[] companies) {
+    public void loadRanking(String[] jobs, String[] companies, String[] current) {
         TableLayout table_job_ranking = (TableLayout) findViewById(R.id.table_job_ranking);
 
         // Example filler right now for visualization. Pass an array in containing the jobs sorted
@@ -139,6 +143,7 @@ public class RankingActivity extends AppCompatActivity {
         row.addView(filler);
         row.addView(job);
         row.addView(company);
+
         table_job_ranking.addView(row, 0);
 
         for (int i = 0; i < jobs.length; i++) {
@@ -149,6 +154,10 @@ public class RankingActivity extends AppCompatActivity {
             checkBox = new CheckBox(this);
             job = new TextView(this);
             company = new TextView(this);
+
+            if (Integer.parseInt(current[i]) == 1) {
+                row.setBackgroundColor(Color.rgb(0, 218, 197));
+            }
 
             job.setText(jobs[i]);
             company.setText(companies[i]);
