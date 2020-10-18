@@ -34,7 +34,7 @@ Request enhancement can be done in a similar manner. After the initial design is
 ### 1.5 Technology
 The majority of the test cases will be conducted manually. Screenshots are provided below to demonstrate proper functionality:
 
-#### Test Case 2
+#### Test Case 1
 ![Test Case 1](./images/Ranking_Algorithm_TestCase_1.PNG)
 
 #### Test Case 2
