@@ -47,7 +47,7 @@ The Job Comparison App empowers working professionals to rank their current job 
 	* Leads the team to meet project milestones.
 	* Prioritizes tasks and tracks progress.
 	* Organizes weekly team meetings.
-	* Develops code for the app.
+	* Develops and tests the app.
 	* Executes test cases developed by the Lead Tester.
 * Lead Tester:
 	* Designs test plan.
@@ -69,5 +69,5 @@ The Job Comparison App empowers working professionals to rank their current job 
 |------------------|------------|----------------|
 |Nakulkumar Detroja|Developer   |     Tester     |
 |Jason Wong        |Architect   |    Developer   |
-|Fadi Habashy      |Project Mgr |    Developer   |
+|Fadi Habashy      |Project Mgr |     Tester     |
 |Shu Liu           |Tester      |    Developer   |
