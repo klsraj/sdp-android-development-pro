@@ -90,16 +90,45 @@ public class JobActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Code that involves saving the entered details of the job offer goes here
                 // Pass this job to be compared in the comparison activity
-//                Intent intent = new Intent(JobActivity.this, ComparisonActivity.class);
-//                startActivity(intent);
-                Cursor cursor = dbManager.getAllData();
+                if (hasEmptyFields()) {
+                    Toast.makeText(getApplicationContext(),
+                            "Please fill in all fields",
+                            Toast.LENGTH_SHORT)
+                            .show();
+                }
+                else {
+                    saveInDB(view);
+                    Cursor cursor = dbManager.getAllData();
 
-                StringBuffer buffer = new StringBuffer();
-                while (cursor.moveToNext()) {
-                    buffer.append("Id: " + cursor.getString(0) + "\n");
-                    buffer.append("Job: " + cursor.getString(1) + "\n");
-                    buffer.append("Company: " + cursor.getString(2) + "\n");
-                    buffer.append("Location: " + cursor.getString(3) + "\n");
+                    int currentJobId = -1;
+                    int enteredJobId = -1;
+                    int i = 0;
+
+                    while (cursor.moveToNext()) {
+                        if (Integer.parseInt(cursor.getString(10)) == 1) {
+                            currentJobId = Integer.parseInt(cursor.getString(0));
+                            cursor.moveToLast();
+                            enteredJobId = Integer.parseInt(cursor.getString(0));
+                            break;
+                        }
+                        Log.v("Text",cursor.getString(0));
+                        i++;
+                    }
+
+                    if (currentJobId > -1) {
+                        Intent intent = new Intent(JobActivity.this, ComparisonActivity.class);
+                        intent.putExtra("job1",currentJobId);
+                        intent.putExtra("job2",enteredJobId);
+                        startActivity(intent);
+                    }
+                    else {
+                        Intent intent = new Intent(JobActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        Toast.makeText(getApplicationContext(),
+                                "A current job hasn't been entered, please enter one for comparison",
+                                Toast.LENGTH_SHORT)
+                                .show();
+                    }
                 }
             }
         });
