@@ -101,14 +101,45 @@ public class JobActivity extends AppCompatActivity {
                     Cursor cursor = dbManager.getAllData();
 
                     int currentJobId = -1;
-                    int enteredJobId = -1;
+                    String[] currentJob = new String[12];
+                    String[] enteredJob = new String[12];
                     int i = 0;
 
                     while (cursor.moveToNext()) {
                         if (Integer.parseInt(cursor.getString(10)) == 1) {
+                            currentJob = new String[]{cursor.getString(0),
+                                    cursor.getString(1),
+                                    cursor.getString(2),
+                                    cursor.getString(3),
+                                    cursor.getString(4),
+                                    cursor.getString(5),
+                                    cursor.getString(6),
+                                    cursor.getString(7),
+                                    cursor.getString(8),
+                                    cursor.getString(9),
+                                    cursor.getString(10),
+                                    "3.50"};
                             currentJobId = Integer.parseInt(cursor.getString(0));
+                            double currentCol = Double.parseDouble(cursor.getString(4));
                             cursor.moveToLast();
-                            enteredJobId = Integer.parseInt(cursor.getString(0));
+                            double col = Double.parseDouble(cursor.getString(4));
+                            double salary = Double.parseDouble(cursor.getString(6));
+                            double bonus = Double.parseDouble(cursor.getString(7));
+                            salary = Math.round(salary/(((col-currentCol)/currentCol)+1));
+                            bonus = Math.round(bonus/(((col-currentCol)/currentCol)+1));
+
+                            enteredJob = new String[]{cursor.getString(0),
+                                    cursor.getString(1),
+                                    cursor.getString(2),
+                                    cursor.getString(3),
+                                    cursor.getString(4),
+                                    cursor.getString(5),
+                                    String.valueOf(salary),
+                                    String.valueOf(bonus),
+                                    cursor.getString(8),
+                                    cursor.getString(9),
+                                    cursor.getString(10),
+                                    "3.50"};
                             break;
                         }
                         Log.v("Text",cursor.getString(0));
@@ -117,8 +148,8 @@ public class JobActivity extends AppCompatActivity {
 
                     if (currentJobId > -1) {
                         Intent intent = new Intent(JobActivity.this, ComparisonActivity.class);
-                        intent.putExtra("job1",currentJobId);
-                        intent.putExtra("job2",enteredJobId);
+                        intent.putExtra("test1",currentJob);
+                        intent.putExtra("test2",enteredJob);
                         startActivity(intent);
                     }
                     else {

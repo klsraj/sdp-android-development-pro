@@ -241,7 +241,8 @@ public class RankingActivity extends AppCompatActivity {
         // Perform sorting operation on sorting array
         Arrays.sort(sortList, new Comparator<String[]>() {
             public int compare(String[] a, String[] b) {
-                return b[11].compareTo(a[11]);
+                //return b[11].compareTo(a[11]);
+                return Double.compare(Double.parseDouble(b[11]), Double.parseDouble(a[11]));
             }
         });
 
