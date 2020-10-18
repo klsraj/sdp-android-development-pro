@@ -172,8 +172,8 @@ public class ComparisonActivity extends AppCompatActivity {
 
         double jobScore = 0;
         int weightTotal = bonus + salary + commute + leave+ retirement;
-        jobScore = ((salary/weightTotal) * AYS) + ((bonus/weightTotal) * AYB) + ( (retirement/weightTotal) * (RBP * AYS))
-                + ( (leave/weightTotal) * (LT * AYS / 260) ) - ( (commute/weightTotal) * (CT * AYS / 8) );
+        jobScore = Double.valueOf(((salary/weightTotal) * AYS) + ((bonus/weightTotal) * AYB) + ( (retirement/weightTotal) * (RBP * AYS))
+                + ( (leave/weightTotal) * (LT * AYS / 260) ) - ( (commute/weightTotal) * (CT * AYS / 8) ));
         return jobScore;
     }
 }

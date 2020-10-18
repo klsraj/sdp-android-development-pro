@@ -69,11 +69,11 @@ public class Weights {
         LT = leave time
         CT = commute time
      */
-    public static double getJobScore(int AYS ,int AYB, int RBP, int LT, int CT){
+    public static double getJobScore(int AYS, int AYB, int RBP, int LT, int CT){
         double jobScore = 0;
         int weightTotal = Weights.bonus_weight + Weights.retirement_weight + Weights.commute_weight + Weights.leave_weight + Weights.salary_weight;
-        jobScore = ((Weights.salary_weight/weightTotal) * AYS) + ((Weights.bonus_weight/weightTotal) * AYB) + ( (Weights.retirement_weight/weightTotal) * (RBP * AYS))
-                + ( (Weights.leave_weight/weightTotal) * (LT * AYS / 260) ) - ( (Weights.commute_weight/weightTotal) * (CT * AYS / 8) );
+        jobScore = Double.valueOf(((Weights.salary_weight/weightTotal) * AYS) + ((Weights.bonus_weight/weightTotal) * AYB) + ( (Weights.retirement_weight/weightTotal) * (RBP * AYS))
+                + ((Weights.leave_weight/weightTotal) * (LT * AYS / 260) ) - ( (Weights.commute_weight/weightTotal) * (CT * AYS / 8) ));
         return jobScore;
     }
 }
