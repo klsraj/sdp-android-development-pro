@@ -156,7 +156,7 @@ public class RankingActivity extends AppCompatActivity {
             company = new TextView(this);
 
             if (Integer.parseInt(current[i]) == 1) {
-                row.setBackgroundColor(Color.rgb(0, 218, 197));
+                row.setBackgroundColor(Color.rgb(255, 222, 3));
             }
 
             job.setText(jobs[i]);
