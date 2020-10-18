@@ -20,7 +20,6 @@ import android.widget.Toast;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import edu.gatech.seclass.jobcomparestorage.JobsDBHelper;
 import edu.gatech.seclass.jobcomparestorage.JobsDBManager;
 import edu.gatech.seclass.jobcomparestorage.WeightsDBManager;
 
@@ -28,7 +27,6 @@ public class RankingActivity extends AppCompatActivity {
 
     private Button button_cancel_ranking;
     private Button button_compare_ranking;
-    private TableLayout table_job;
     private boolean[] selected_jobs;
     private String[][] jobList;
     private String[][] sortedList;
@@ -47,11 +45,10 @@ public class RankingActivity extends AppCompatActivity {
         dbManager = new JobsDBManager(this);
         dbManager.open();
 
-        //String[][] jobList;
         String[] jobs;
         String[] companies;
         String[] current;
-
+        String[] jobScores;
 
         final Cursor cursor = dbManager.getAllData();
         final int[] idIndex = new int[cursor.getCount()];
@@ -64,6 +61,7 @@ public class RankingActivity extends AppCompatActivity {
             jobs = new String[cursor.getCount()];
             companies = new String[cursor.getCount()];
             current = new String[cursor.getCount()];
+            jobScores = new String[cursor.getCount()];
             int i = 0;
 
             while (cursor.moveToNext()) {
@@ -75,28 +73,20 @@ public class RankingActivity extends AppCompatActivity {
                 companies[i] = cursor.getString(2);
                 current[i] = cursor.getString(10);
                 idIndex[i] = Integer.parseInt(cursor.getString(0));
-                Log.v("Text",cursor.getString(0));
                 i++;
             }
 
-            //jobList = rankJobs(jobList);
             sortedList = rankJobs(jobList);
-
-//            for (int j=0; j<jobList.length; j++) {
-//                idIndex[j] = Integer.parseInt(jobList[j][0]);
-//                jobs[j] = jobList[j][1];
-//                companies[j] = jobList[j][2];
-//                current[j] = jobList[j][10];
-//            }
 
             for (int j=0; j<sortedList.length; j++) {
                 idIndex[j] = Integer.parseInt(sortedList[j][0]);
                 jobs[j] = sortedList[j][1];
                 companies[j] = sortedList[j][2];
                 current[j] = sortedList[j][10];
+                jobScores[j] = sortedList[j][11];
             }
 
-            loadRanking(jobs, companies, current);
+            loadRanking(jobs, companies, current, jobScores);
         }
 
         // Return to main menu
@@ -131,13 +121,8 @@ public class RankingActivity extends AppCompatActivity {
 
                 // If exactly 2 jobs were selected to compare, do comparison
                 if (selected_count == 2) {
-                    // For now, just show which indexes were selected and pass them to compare
                     Toast.makeText(getApplicationContext(), "The indexes are: " + String.valueOf(job_1) + ", " + String.valueOf(job_2), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RankingActivity.this, ComparisonActivity.class);
-                    //intent.putExtra("job1",idIndex[job_1]);
-                    //intent.putExtra("job2",idIndex[job_2]);
-//                    intent.putExtra("test1", jobList[job_1]);
-//                    intent.putExtra("test2", jobList[job_2]);
                     intent.putExtra("test1", sortedList[job_1]);
                     intent.putExtra("test2", sortedList[job_2]);
                     startActivity(intent);
@@ -152,11 +137,8 @@ public class RankingActivity extends AppCompatActivity {
 
     }
 
-    public void loadRanking(String[] jobs, String[] companies, String[] current) {
+    public void loadRanking(String[] jobs, String[] companies, String[] current, String[] jobScores) {
         TableLayout table_job_ranking = (TableLayout) findViewById(R.id.table_job_ranking);
-
-        // Example filler right now for visualization. Pass an array in containing the jobs sorted
-        // by rank
 
         selected_jobs = new boolean[jobs.length];
 
@@ -169,17 +151,21 @@ public class RankingActivity extends AppCompatActivity {
         CheckBox checkBox = new CheckBox(this);
         TextView job = new TextView(this);
         TextView company = new TextView(this);
+        TextView jobScore = new TextView(this);
 
         filler.setText(" ");
         job.setTypeface(null, Typeface.BOLD);
         job.setText("Job Title");
         company.setTypeface(null, Typeface.BOLD);
         company.setText("Company");
+        jobScore.setTypeface(null, Typeface.BOLD);
+        jobScore.setText("Job Score");
         checkBox.setClickable(false);
 
         row.addView(filler);
         row.addView(job);
         row.addView(company);
+        row.addView(jobScore);
 
         table_job_ranking.addView(row, 0);
 
@@ -191,6 +177,7 @@ public class RankingActivity extends AppCompatActivity {
             checkBox = new CheckBox(this);
             job = new TextView(this);
             company = new TextView(this);
+            jobScore = new TextView(this);
 
             if (Integer.parseInt(current[i]) == 1) {
                 row.setBackgroundColor(Color.rgb(255, 222, 3));
@@ -198,6 +185,7 @@ public class RankingActivity extends AppCompatActivity {
 
             job.setText(jobs[i]);
             company.setText(companies[i]);
+            jobScore.setText(jobScores[i]);
 
             checkBox.setId(i);
             checkBox.setOnClickListener(new View.OnClickListener() {
@@ -215,6 +203,7 @@ public class RankingActivity extends AppCompatActivity {
             row.addView(checkBox);
             row.addView(job);
             row.addView(company);
+            row.addView(jobScore);
             table_job_ranking.addView(row, i+1);
         }
     }

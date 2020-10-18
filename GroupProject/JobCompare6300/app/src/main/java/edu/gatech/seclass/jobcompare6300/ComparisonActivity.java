@@ -25,37 +25,16 @@ public class ComparisonActivity extends AppCompatActivity {
 
     private Button button_cancel_comparison;
     private Button button_ranking_comparison;
-    private JobsDBManager jobsDB;
-    private WeightsDBManager weightsDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comparison);
 
-//        jobsDB = new JobsDBManager(this);
-//        jobsDB.open();
-
-//        int Job1 = getIntent().getIntExtra("job1",0);
-//        int Job2 = getIntent().getIntExtra("job2",1);
-
         String[] j1 = getIntent().getStringArrayExtra("test1");
         String[] j2 = getIntent().getStringArrayExtra("test2");
 
-//        Log.v("Text","Inside Comparison");
-//        Log.v("Text","Job1 : "+Job1);
-//        Log.v("Text","Job2 : "+Job2);
-
-//        Cursor cursor = jobsDB.getAllData();
-//        if(cursor.getCount() > 0){
-//            cursor.moveToFirst();
-//            do{
-//                Log.v("Text",cursor.getString(cursor.getColumnIndex(JobsDBHelper._ID)));
-//            }while (cursor.moveToNext());
-//        }
-
-        //loadComparison(Job1,Job2);
-        compare(j1, j2);
+        loadComparison(j1, j2);
 
         button_cancel_comparison = findViewById(R.id.button_cancel_comparison);
         button_cancel_comparison.setOnClickListener(new View.OnClickListener() {
@@ -74,12 +53,12 @@ public class ComparisonActivity extends AppCompatActivity {
         });
     }
 
-    private void compare(String[] job1, String[] job2) {
+    private void loadComparison(String[] job1, String[] job2) {
 
         // Example filler right now for visualization. Pass an array in containing the jobs sorted
         // by rank
         String[] headers = {"Metric", "Job", "Job"};
-        String[] labels = {"Job Title", "Company", "Location", "Commute Time", "Adj. Yearly Salary", "Adj. Yearly Bonus", "Retirement Benefits", "Leave Time", "Job Score"};
+        String[] labels = {"Job Title", "Company", "Location", "Commute Time", "Adj. Yearly Salary", "Adj. Yearly Bonus", "Retirement Benefits", "Leave Time"};
 
         TableLayout table_job_comparison = (TableLayout) findViewById(R.id.table_job_comparison);
         table_job_comparison.setStretchAllColumns(true);
@@ -116,113 +95,4 @@ public class ComparisonActivity extends AppCompatActivity {
             table_job_comparison.addView(row, i+1);
         }
     }
-
-    public void loadComparison(int Job1, int Job2) {
-
-        // Example filler right now for visualization. Pass an array in containing the jobs sorted
-        // by rank
-        String[] headers = {"Metric", "Job", "Job"};
-        String[] labels = {"Job Title", "Company", "Location", "Commute Time", "Yearly Salary", "Yearly Bonus", "Retirement Benefits", "Leave Time"};
-        String[] example_job1 = {"Software Developer I", "Amazon", "New York, NY", "30", "100000", "20000", "3", "15"};
-        String[] example_job2 = {"Test Engineer", "Georgia Tech", "Atlanta, GA", "10", "80000", "10000", "8", "20"};
-
-//        String[] job1 = getJobfromDB(Job1);
-//        String[] job2 = getJobfromDB(Job2);
-//
-//        double job1Score = getJobScore(Integer.parseInt(job1[4]), Integer.parseInt(job1[5]), Integer.parseInt(job1[6]), Integer.parseInt(job1[7]), Double.parseDouble(job1[3]));
-//        double job2Score = getJobScore(Integer.parseInt(job2[4]), Integer.parseInt(job2[5]), Integer.parseInt(job2[6]), Integer.parseInt(job2[7]), Double.parseDouble(job2[3]));
-
-
-
-//        if(job1Score > job2Score){
-//            example_job1 = job1;
-//            example_job2 = job2;
-//        }
-//        else{
-//            example_job1 = job2;
-//            example_job2 = job1;
-//        }
-
-        TableLayout table_job_comparison = (TableLayout) findViewById(R.id.table_job_comparison);
-
-        table_job_comparison.setStretchAllColumns(true);
-
-        TableRow row = new TableRow(this);
-        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-        row.setLayoutParams(lp);
-
-        for (int i = 0; i < headers.length; i++) {
-            TextView textview = new TextView(this);
-            textview.setTypeface(null, Typeface.BOLD);
-            textview.setText(headers[i]);
-            row.addView(textview);
-        }
-        table_job_comparison.addView(row, 0);
-
-        for (int i = 0; i < labels.length; i++) {
-            row = new TableRow(this);
-
-            TextView textview = new TextView(this);
-            textview.setText(labels[i]);
-            row.addView(textview);
-
-            textview = new TextView(this);
-            textview.setText(example_job1[i]);
-            row.addView(textview);
-
-            textview = new TextView(this);
-            textview.setText(example_job2[i]);
-            row.addView(textview);
-
-            table_job_comparison.addView(row, i+1);
-        }
-    }
-
-//    private String[] getJobfromDB(int jobId) {
-//
-//        String[] job = {"","","","","","","",""};
-//        Cursor cursor = jobsDB.fetchById(jobId);
-//        if(cursor.getCount()>0){
-//            cursor.moveToFirst();
-//            job[0] = cursor.getString(cursor.getColumnIndex(JobsDBHelper.job));
-//            job[1] = cursor.getString(cursor.getColumnIndex(JobsDBHelper.company));
-//            job[2] = cursor.getString(cursor.getColumnIndex(JobsDBHelper.location));
-//            job[3] = cursor.getString(cursor.getColumnIndex(JobsDBHelper.commute));
-//            job[4] = cursor.getString(cursor.getColumnIndex(JobsDBHelper.salary));
-//            job[5] = cursor.getString(cursor.getColumnIndex(JobsDBHelper.bonus));
-//            job[6] = cursor.getString(cursor.getColumnIndex(JobsDBHelper.retirement));
-//            job[7] = cursor.getString(cursor.getColumnIndex(JobsDBHelper.leave));
-//        }
-//
-//        return job;
-//    }
-//
-//    public double getJobScore(int AYS ,int AYB, int RBP, int LT, double CT){
-//
-//        weightsDB = new WeightsDBManager(this);
-//        weightsDB.open();
-//
-//        int commute= 1;
-//        int salary= 1;
-//        int retirement= 1;
-//        int bonus= 1;
-//        int leave= 1;
-//
-//        Cursor cursor = weightsDB.fetch();
-//
-//        if(cursor.getCount() > 0) {
-//            Log.v("Text", "Getting Weights");
-//            commute = Integer.parseInt(cursor.getString(cursor.getColumnIndex(WeightsDBHelper.commute_weight)));
-//            salary = Integer.parseInt(cursor.getString(cursor.getColumnIndex(WeightsDBHelper.salary_weight)));
-//            retirement = Integer.parseInt(cursor.getString(cursor.getColumnIndex(WeightsDBHelper.retirement_weight)));
-//            bonus = Integer.parseInt(cursor.getString(cursor.getColumnIndex(WeightsDBHelper.bonus_weight)));
-//            leave = Integer.parseInt(cursor.getString(cursor.getColumnIndex(WeightsDBHelper.leave_weight)));
-//        }
-//
-//        double jobScore = 0;
-//        double weightTotal = bonus + salary + commute + leave+ retirement;
-//        jobScore = ((salary/weightTotal) * AYS) + ((bonus/weightTotal) * AYB) + ( (retirement/weightTotal) * (RBP * AYS))
-//                + ( (leave/weightTotal) * (LT * AYS / 260) ) - ((commute/weightTotal) * (CT * AYS / 8));
-//        return jobScore;
-//    }
 }
