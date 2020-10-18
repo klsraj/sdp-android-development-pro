@@ -88,7 +88,7 @@ public class WeightsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Code that involves saving the user-entered weights here
                 //
-                saveWeight(view);
+                //saveWeight(view);
                 saveInDB(view);
                 Intent intent = new Intent(WeightsActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -96,11 +96,6 @@ public class WeightsActivity extends AppCompatActivity {
                         "Entered weights saved",
                         Toast.LENGTH_LONG)
                         .show();
-                Cursor data = dbManager.fetch();
-                String[] test = data.getColumnNames();
-                String test1 = data.getString(0);
-                String test2 = data.getString(1);
-                showMessage("Data", test2);
             }
         });
     }
@@ -146,13 +141,5 @@ public class WeightsActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT)
                     .show();
         }
-    }
-
-    public void showMessage(String title,String Message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(Message);
-        builder.show();
     }
 }

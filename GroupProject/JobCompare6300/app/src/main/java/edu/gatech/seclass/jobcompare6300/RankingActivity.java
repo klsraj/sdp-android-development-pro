@@ -30,6 +30,8 @@ public class RankingActivity extends AppCompatActivity {
     private Button button_compare_ranking;
     private TableLayout table_job;
     private boolean[] selected_jobs;
+    private String[][] jobList;
+    private String[][] sortedList;
 
     private JobsDBManager dbManager;
     private WeightsDBManager weightsDB;
@@ -45,7 +47,7 @@ public class RankingActivity extends AppCompatActivity {
         dbManager = new JobsDBManager(this);
         dbManager.open();
 
-        String[][] jobList;
+        //String[][] jobList;
         String[] jobs;
         String[] companies;
         String[] current;
@@ -77,13 +79,21 @@ public class RankingActivity extends AppCompatActivity {
                 i++;
             }
 
-            jobList = rankJobs(jobList);
+            //jobList = rankJobs(jobList);
+            sortedList = rankJobs(jobList);
 
-            for (int j=0; j<jobList.length; j++) {
-                idIndex[j] = Integer.parseInt(jobList[j][0]);
-                jobs[j] = jobList[j][1];
-                companies[j] = jobList[j][2];
-                current[j] = jobList[j][10];
+//            for (int j=0; j<jobList.length; j++) {
+//                idIndex[j] = Integer.parseInt(jobList[j][0]);
+//                jobs[j] = jobList[j][1];
+//                companies[j] = jobList[j][2];
+//                current[j] = jobList[j][10];
+//            }
+
+            for (int j=0; j<sortedList.length; j++) {
+                idIndex[j] = Integer.parseInt(sortedList[j][0]);
+                jobs[j] = sortedList[j][1];
+                companies[j] = sortedList[j][2];
+                current[j] = sortedList[j][10];
             }
 
             loadRanking(jobs, companies, current);
@@ -124,10 +134,12 @@ public class RankingActivity extends AppCompatActivity {
                     // For now, just show which indexes were selected and pass them to compare
                     Toast.makeText(getApplicationContext(), "The indexes are: " + String.valueOf(job_1) + ", " + String.valueOf(job_2), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RankingActivity.this, ComparisonActivity.class);
-                    intent.putExtra("job1",idIndex[job_1]);
-                    intent.putExtra("job2",idIndex[job_2]);
-                    Log.v("Text","Inside Ranking Job1 : "+idIndex[job_1]);
-                    Log.v("Text","Inside Ranking Job2 : "+idIndex[job_2]);
+                    //intent.putExtra("job1",idIndex[job_1]);
+                    //intent.putExtra("job2",idIndex[job_2]);
+//                    intent.putExtra("test1", jobList[job_1]);
+//                    intent.putExtra("test2", jobList[job_2]);
+                    intent.putExtra("test1", sortedList[job_1]);
+                    intent.putExtra("test2", sortedList[job_2]);
                     startActivity(intent);
                 }
                 // If more or less than 2 jobs were selected to compare, provide error message
@@ -206,59 +218,77 @@ public class RankingActivity extends AppCompatActivity {
             table_job_ranking.addView(row, i+1);
         }
     }
-    public void showMessage(String title,String Message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(Message);
-        builder.show();
-    }
 
     private String[][] rankJobs(String[][] jobList) {
-        Cursor weights = weightsDB.fetch();
-
+        double currentCol = 0;
         String[][] sortList = new String[jobList.length][12];
 
+        for (int i=0; i<jobList.length; i++) {
+            if (Integer.parseInt(jobList[i][10]) == 1) {
+                currentCol = Double.parseDouble(jobList[i][4]);
+            }
+        }
+
+        // Write the list to be sorted into new array
         for (int i=0; i<sortList.length; i++) {
             for (int j=0; j<11; j++)
                 sortList[i][j] = jobList[i][j];
-            sortList[i][11] = getJobScore(jobList[i]);
+            sortList[i][11] = getJobScore(jobList[i], currentCol); // calculate the job score for each job
+            sortList[i][6] = adjustForCol(sortList[i][4], sortList[i][6], currentCol);
+            sortList[i][7] = adjustForCol(sortList[i][4], sortList[i][7], currentCol);
         }
 
+        // Perform sorting operation on sorting array
         Arrays.sort(sortList, new Comparator<String[]>() {
             public int compare(String[] a, String[] b) {
-                return a[11].compareTo(b[11]);
+                return b[11].compareTo(a[11]);
             }
         });
 
+        // Rearrange the original array to return
         for (int i=0; i<jobList.length; i++) {
             for (int j=0; j<11; j++)
                 jobList[i][j] = sortList[i][j];
         }
 
-        return jobList;
+        return sortList;
     }
 
-    private String getJobScore(String[] job) {
-        double commute = Double.parseDouble(job[4]);
-        double salary = Double.parseDouble(job[5]);
-        double bonus = Double.parseDouble(job[6]);
-        double retirement = Double.parseDouble(job[7]);
-        double leave = Double.parseDouble(job[8]);
+    private String getJobScore(String[] job, double currentCol) {
+        double col = Double.parseDouble(job[4]);
+        double commute = Double.parseDouble(job[5]);
+        double salary = Double.parseDouble(job[6]);
+        double bonus = Double.parseDouble(job[7]);
+        double retirement = Double.parseDouble(job[8]);
+        double leave = Double.parseDouble(job[9]);
 
-        double commute_weight = Double.parseDouble(weightsDB.fetch().getString(0));
-        double salary_weight = Double.parseDouble(weightsDB.fetch().getString(1));
-        double bonus_weight = Double.parseDouble(weightsDB.fetch().getString(2));
-        double retirement_weight = Double.parseDouble(weightsDB.fetch().getString(3));
-        double leave_weight = Double.parseDouble(weightsDB.fetch().getString(4));
+        double commute_weight = Double.parseDouble(weightsDB.fetch().getString(1));
+        double salary_weight = Double.parseDouble(weightsDB.fetch().getString(2));
+        double bonus_weight = Double.parseDouble(weightsDB.fetch().getString(3));
+        double retirement_weight = Double.parseDouble(weightsDB.fetch().getString(4));
+        double leave_weight = Double.parseDouble(weightsDB.fetch().getString(5));
         double total_weight = commute_weight + salary_weight + bonus_weight + retirement_weight + leave_weight;
 
-        double jobScore = ((salary_weight/total_weight) * salary) +
-                            ((bonus_weight/total_weight) * bonus) +
-                            ((retirement_weight/total_weight) * (retirement*.01*salary)) +
-                            ((leave_weight/total_weight) * (leave*salary/260)) -
-                            ((commute_weight/total_weight) * (commute*salary/8));
+        double AYS = salary/(((col-currentCol)/currentCol)+1);
+        double AYB = bonus/(((col-currentCol)/currentCol)+1);
+        double RBP = retirement*.01;
+        double LT = leave;
+        double CT = commute;
 
-        return String.valueOf(jobScore);
+        double jobScore = ((salary_weight/total_weight) * AYS) +
+                            ((bonus_weight/total_weight) * AYB) +
+                            ((retirement_weight/total_weight) * (RBP*AYS)) +
+                            ((leave_weight/total_weight) * (LT*AYS/260)) -
+                            ((commute_weight/total_weight) * (CT*AYS/8));
+
+        return String.valueOf(Math.round(jobScore));
+    }
+
+    private String adjustForCol(String _col, String _value, double currentCol) {
+        double col = Double.parseDouble(_col);
+        double value = Double.parseDouble(_value);
+        double adjusted_value = value/(((col-currentCol)/currentCol)+1);
+
+        return String.valueOf(Math.round(adjusted_value));
     }
 }
