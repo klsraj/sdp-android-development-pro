@@ -263,12 +263,21 @@ public class RankingActivity extends AppCompatActivity {
         double retirement = Double.parseDouble(job[8]);
         double leave = Double.parseDouble(job[9]);
 
-        double commute_weight = Double.parseDouble(weightsDB.fetch().getString(1));
-        double salary_weight = Double.parseDouble(weightsDB.fetch().getString(2));
-        double bonus_weight = Double.parseDouble(weightsDB.fetch().getString(3));
-        double retirement_weight = Double.parseDouble(weightsDB.fetch().getString(4));
-        double leave_weight = Double.parseDouble(weightsDB.fetch().getString(5));
+        double commute_weight = 1;
+        double salary_weight = 1;
+        double bonus_weight = 1;
+        double retirement_weight = 1;
+        double leave_weight = 1;
         double total_weight = commute_weight + salary_weight + bonus_weight + retirement_weight + leave_weight;
+
+        if (weightsDB.fetch().getCount() > 0) {
+            commute_weight = Double.parseDouble(weightsDB.fetch().getString(1));
+            salary_weight = Double.parseDouble(weightsDB.fetch().getString(2));
+            bonus_weight = Double.parseDouble(weightsDB.fetch().getString(3));
+            retirement_weight = Double.parseDouble(weightsDB.fetch().getString(4));
+            leave_weight = Double.parseDouble(weightsDB.fetch().getString(5));
+            total_weight = commute_weight + salary_weight + bonus_weight + retirement_weight + leave_weight;
+        }
 
         double AYS = salary/(((col-currentCol)/currentCol)+1);
         double AYB = bonus/(((col-currentCol)/currentCol)+1);
