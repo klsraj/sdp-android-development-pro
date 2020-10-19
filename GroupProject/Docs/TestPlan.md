@@ -52,7 +52,8 @@ The majority of the test cases will be conducted manually. Screenshots are provi
 | Test App State Persistence  | Perform other test cases, close the app, then reopen to see if the app state persists             | App state persists                                | App state persists        | P   |
 
 ## Results
-The following 3 images show the tabulated ranking (from best to worst) of 5 jobs (including the current job). Different weights are provided in each test case to demonstrate that job rankings are correctly changed.
+The following 4 images show the tabulated ranking (from best to worst) of 5 jobs. All test cases except the last one have the current job entered. 
+In each test case, different weights are provided to demonstrate that job rankings are correctly changed.
 
 #### Test Case 1
 ![Test Case 1](./images/Ranking_Algorithm_TestCase_1.PNG)
