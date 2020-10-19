@@ -61,4 +61,7 @@ The following 3 images show the tabulated ranking (from best to worst) of 5 jobs
 ![Test Case 2](./images/Ranking_Algorithm_TestCase_2.PNG)
 
 #### Test Case 3
-![Test Case 3](./images/Ranking_Algorithm_TestCase_3.PNG) 
+![Test Case 3](./images/Ranking_Algorithm_TestCase_3.PNG)
+
+#### Test Case 4
+![Test Case 4](./images/Ranking_Algorithm_TestCase_4.PNG) 
