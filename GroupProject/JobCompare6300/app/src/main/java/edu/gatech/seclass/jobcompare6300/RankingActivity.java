@@ -209,7 +209,8 @@ public class RankingActivity extends AppCompatActivity {
     }
 
     private String[][] rankJobs(String[][] jobList) {
-        double currentCol = 0;
+        // Initialize col to 100 in case no current job is entered
+        double currentCol = 100;
         String[][] sortList = new String[jobList.length][12];
 
         for (int i=0; i<jobList.length; i++) {
